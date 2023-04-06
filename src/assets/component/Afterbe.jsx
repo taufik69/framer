@@ -1,55 +1,30 @@
-import React from "react";
-import { motion, spring } from "framer-motion";
+import React, { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 const Afterbe = () => {
-  const maindiv = {
-    hidden: {
-      x: 90,
-      y: 0,
-      opacity: 0,
-    },
-    visible: {
-      x: 0,
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 0.4,
-        duration: 3,
-
-        when: "afterChildren",
-      },
-    },
-  };
-  const childvarient = {
-    hidden: {
-      x: 1000,
-      y: 0,
-    },
-    visible: {
-      x: 0,
-      y: 0,
-      transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 600,
-      },
-    },
-  };
+  const mation = useAnimation();
   return (
-    <motion.div
-      style={{ width: 400, height: 200, background: "blue" }}
-      variants={maindiv}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.h1
-        style={{ backgroundColor: "lightblue", marginTop: 200 }}
-        variants={childvarient}
-        initial="hidden"
-        animate="visible"
+    <>
+      <motion.div
+        style={{ width: 400, height: 200, background: "blue" }}
+        animate={mation}
+      ></motion.div>
+
+      <motion.button
+        style={{ padding: 10, marginLeft: 60 }}
+        onClick={() => {
+          mation.start({
+            x: 100,
+            transition: {
+              delay: 0.3,
+              type: "spring",
+              stiffness: 500,
+            },
+          });
+        }}
       >
-        hello tuafik islam
-      </motion.h1>
-    </motion.div>
+        Send
+      </motion.button>
+    </>
   );
 };
 
